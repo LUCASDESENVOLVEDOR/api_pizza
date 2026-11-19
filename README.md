@@ -2,14 +2,36 @@
 
 API ASP.NET Core para gerenciamento de cursos (Curso, Aluno, Professor, Matrícula), usando SQL Server LocalDB.
 
+## Criando o banco de dados
+
+O script do banco fica em [`sql/script_ESCOLA.sql`](sql/script_ESCOLA.sql). Ele cria as tabelas
+**ALUNO**, **CURSO**, **PROFESSOR**, **ESPECIALIDADE_PROFESSOR** e **MATRICULA**, com chaves, constraints
+e dados de exemplo.
+
+### Passo a passo (SQL Server Management Studio)
+
+1. Abra o **SSMS** e conecte no servidor `(localdb)\MSSQLLocalDB`
+   (é o mesmo servidor da connection string em `appsettings.json`).
+2. Crie o banco, já que o script começa com `USE [Escola]` e não cria o banco sozinho:
+   ```sql
+   CREATE DATABASE Escola;
+   ```
+3. Abra o arquivo `sql/script_ESCOLA.sql` (**File → Open → File...**, ou `Ctrl + O`).
+4. Clique em **Execute** (ou aperte `F5`).
+5. Confira se as tabelas aparecem em **Databases → Escola → Tables** (talvez precise dar **Refresh**).
+
+> Também dá para fazer isso pelo Visual Studio: **View → SQL Server Object Explorer**, conecte no
+> `(localdb)\MSSQLLocalDB`, crie o banco `Escola`, clique com o botão direito nele → **New Query**, cole o script e execute.
+
 ## Como rodar a API
 
-1. Abra a solução `API_ESCOLA_NOVO.slnx` no Visual Studio (ou use o terminal).
-2. Rode com o perfil **https**:
+1. Crie o banco de dados (veja a seção acima).
+2. Abra a solução `API_ESCOLA_NOVO.slnx` no Visual Studio (ou use o terminal).
+3. Rode com o perfil **https**:
    ```bash
    dotnet run --launch-profile https
    ```
-3. A API vai responder em `https://localhost:7019` (e `http://localhost:5046`).
+4. A API vai responder em `https://localhost:7019` (e `http://localhost:5046`).
 
 ## Testando com o Postman
 
